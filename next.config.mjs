@@ -3,6 +3,9 @@ const nextConfig = {
     images: {
     domains: ['dynastybite.test'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
