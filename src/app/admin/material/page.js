@@ -88,21 +88,24 @@ function Material() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", newMenu.name);
-    formData.append("description", newMenu.description);
-    formData.append("pcs", newMenu.pcs);
-    formData.append("price", newMenu.price);
-    formData.append("category_id", newMenu.category_id);
-    formData.append("image", newMenu.image);
+    // Ambil hanya nama file
+    const imageName = newMenu.image.name;
 
     try {
       const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/menu", {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: formData,
+        body: JSON.stringify({
+          name: newMenu.name,
+          pcs: newMenu.pcs,
+          price: newMenu.price,
+          description: newMenu.description,
+          category_id: newMenu.category_id,
+          image: imageName, // hanya nama file!
+        }),
       });
 
       const data = await res.json();
@@ -112,13 +115,7 @@ function Material() {
       }
 
       alert("Menu berhasil ditambahkan!");
-      setMenus((prevMenus) => [
-        ...prevMenus,
-        {
-          ...data.data,
-          category_id: parseInt(data.data.category_id), // penting!
-        },
-      ]);
+      setMenus([...menus, data.data]);
 
       setNewMenu({
         name: "",
@@ -133,6 +130,7 @@ function Material() {
       alert(err.message || "Gagal kirim data ke server");
     }
   };
+
 
   const handleDeleteCat = async (id) => {
     const confirmDelete = confirm("Apakah anda yakin ingin menghapus categori")
