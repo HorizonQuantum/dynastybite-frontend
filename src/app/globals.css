@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Poppins', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+::-webkit-scrollbar {
+  display: none; 
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-width: none; 
+  font-family: var(--font-sans);    
+}
+
+@media print {
+  nav,
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  #laporan-cetak {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  body {
+    background: white !important;
+  }
+}
