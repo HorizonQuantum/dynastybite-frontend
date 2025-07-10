@@ -88,24 +88,21 @@ function Material() {
       return;
     }
 
-    // Ambil hanya nama file
-    const imageName = newMenu.image.name;
+    const formData = new FormData();
+    formData.append("name", newMenu.name);
+    formData.append("description", newMenu.description);
+    formData.append("pcs", newMenu.pcs);
+    formData.append("price", newMenu.price);
+    formData.append("category_id", newMenu.category_id);
+    formData.append("image", newMenu.image);
 
     try {
       const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/menu", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          name: newMenu.name,
-          pcs: newMenu.pcs,
-          price: newMenu.price,
-          description: newMenu.description,
-          category_id: newMenu.category_id,
-          image: imageName, // hanya nama file!
-        }),
+        body: formData,
       });
 
       const data = await res.json();
@@ -115,7 +112,13 @@ function Material() {
       }
 
       alert("Menu berhasil ditambahkan!");
-      setMenus([...menus, data.data]);
+      setMenus((prevMenus) => [
+        ...prevMenus,
+        {
+          ...data.data,
+          category_id: parseInt(data.data.category_id), // penting!
+        },
+      ]);
 
       setNewMenu({
         name: "",
@@ -130,7 +133,6 @@ function Material() {
       alert(err.message || "Gagal kirim data ke server");
     }
   };
-
 
   const handleDeleteCat = async (id) => {
     const confirmDelete = confirm("Apakah anda yakin ingin menghapus categori")
@@ -236,7 +238,7 @@ function Material() {
                               }}
                             >
                               <Image
-                                src={`/menu-images/${menu.image}`}
+                                src={`https://dynastybite-backend-production-7527.up.railway.app/storage/images/${menu.image}`}
                                 alt="Menu Image"
                                 width={300}
                                 height={300}
