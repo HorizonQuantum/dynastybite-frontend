@@ -363,7 +363,7 @@ export default function Dashboard(){
                                       }}
                                     >
                                       <Image
-                                        src={`https://dynastybite-backend-production-7527.up.railway.app/storage/images/${menu.image}`}
+                                        src={`https://dynastybite-backend-production-7527.up.railway.app/storage/${menu.image}`}
                                         alt="Menu Image"
                                         width={300}
                                         height={300}
