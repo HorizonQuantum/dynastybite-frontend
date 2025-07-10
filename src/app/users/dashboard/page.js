@@ -9,7 +9,7 @@ import Image from "next/image";
 import Plus from "../../../../public/images/button_plus.png";
 import Minus from "../../../../public/images/button_minus.png";
 import Box from "../../../../public/images/box.png";
-import Calendar from "../../../../public/images/Calendar.png";
+import Calendar from "../../../../public/images/calendar.png";
 import Button from "../../components/button/page";
 import information from "../../../../public/images/information.png";
 import React from "react";
