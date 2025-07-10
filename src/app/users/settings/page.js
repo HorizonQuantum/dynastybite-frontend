@@ -31,7 +31,7 @@ export default function Settings() {
     // Ambil data user dari server dan set ke form
     useEffect(() => {
         if (!userId) return;
-        fetch(`http://dynastybite.test/api/user/${userId}`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/user/${userId}`)
             .then((res) => res.json())
             .then((data) => {
                 setForm({
@@ -53,7 +53,7 @@ export default function Settings() {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://dynastybite.test/api/user/${userId}`, {
+            const response = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/user/${userId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function Settings() {
             if (!response.ok) throw new Error("Update gagal");
 
             // Ambil data terbaru dari server
-            const updatedUser = await fetch(`http://dynastybite.test/api/user/${userId}`).then(res => res.json());
+            const updatedUser = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/user/${userId}`).then(res => res.json());
 
             // Update localStorage
             localStorage.setItem("user", JSON.stringify(updatedUser));

@@ -36,7 +36,7 @@ function Login(){
         e.preventDefault()
 
         try {
-        const response = await fetch("http://dynastybite.test/api/login", {
+        const response = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/login", {
             method: "POST",
             headers: {
             "Content-Type": "application/json",

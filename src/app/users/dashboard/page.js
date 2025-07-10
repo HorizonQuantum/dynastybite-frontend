@@ -74,7 +74,7 @@ export default function Dashboard(){
           setTimeLeft(0);
           setIsExpired(true);
 
-          fetch(`http://dynastybite.test/api/order/${popupData.id}`, {
+          fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${popupData.id}`, {
             method: "DELETE",
             headers: {
               Accept: "application/json",
@@ -230,7 +230,7 @@ export default function Dashboard(){
       };
 
       try {
-        const res = await fetch("http://dynastybite.test/api/order", {
+        const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -284,19 +284,19 @@ export default function Dashboard(){
     }, [user]);
 
     useEffect(() => {
-      fetch("http://dynastybite.test/api/menu")
+      fetch("https://dynastybite-backend-production-7527.up.railway.app/api/menu")
       .then((res) => res.json())
       .then((data) => {
         setMenus(data);
       })
       .catch((err) => console.error("Gagal memuat menu", err))
       
-      fetch("http://dynastybite.test/api/timetable")
+      fetch("https://dynastybite-backend-production-7527.up.railway.app/api/timetable")
       .then((res) => res.json())
       .then((data) => setTimetables(data))
       .catch((err) => console.error("Gagal memuat jadwal", err))
 
-      fetch("http://dynastybite.test/api/category")
+      fetch("https://dynastybite-backend-production-7527.up.railway.app/api/category")
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error("Gagal memuat kategori:", err))
@@ -310,8 +310,8 @@ export default function Dashboard(){
         try {
           const url =
             orderType === 1
-              ? `http://dynastybite.test/api/custom-quota?tanggal=${tanggalKirim}&user_id=${user.id}`
-              : `http://dynastybite.test/api/regular-quota?tanggal=${tanggalKirim}`;
+              ? `https://dynastybite-backend-production-7527.up.railway.app/api/custom-quota?tanggal=${tanggalKirim}&user_id=${user.id}`
+              : `https://dynastybite-backend-production-7527.up.railway.app/api/regular-quota?tanggal=${tanggalKirim}`;
 
           const res = await fetch(url);
           const data = await res.json();
@@ -363,7 +363,7 @@ export default function Dashboard(){
                                       }}
                                     >
                                       <Image
-                                        src={`http://dynastybite.test/storage/images/${menu.image}`}
+                                        src={`https://dynastybite-backend-production-7527.up.railway.app/storage/images/${menu.image}`}
                                         alt="Menu Image"
                                         width={300}
                                         height={300}

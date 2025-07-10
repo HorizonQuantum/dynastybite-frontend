@@ -36,14 +36,14 @@ function EditMenu(){
     });
 
     useEffect(() => {
-        fetch(`http://dynastybite.test/api/menu/${params.id}`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/menu/${params.id}`)
         .then((res) => res.json())
         .then((data) => {
             setForm(data)
             setLoading(false)
         })
         
-        fetch(`http://dynastybite.test/api/category`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/category`)
         .then((res) => res.json())
         .then((data) => {
             setCategory(data)
@@ -83,7 +83,7 @@ function EditMenu(){
         formData.append("_method", "PATCH")
 
         try{
-            const res = await fetch(`http://dynastybite.test/api/menu/${params.id}`, {
+            const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/menu/${params.id}`, {
                 method: "POST",
                 headers: {
                     Accept: "application/json"

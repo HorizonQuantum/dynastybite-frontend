@@ -25,17 +25,17 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch('http://dynastybite.test/api/menu')
+    fetch('https://dynastybite-backend-production-7527.up.railway.app/api/menu')
     .then((res) => res.json())
     .then((data) => setMenus(data))
     .catch((err) => console.error('Gagal memuat menu:', err));
 
-    fetch('http://dynastybite.test/api/timetable')
+    fetch('https://dynastybite-backend-production-7527.up.railway.app/api/timetable')
     .then((res) => res.json())
     .then((data) => setTimetables(data))
     .catch((err) => console.error('Gagal memuat jadwal:', err));
 
-    fetch('http://dynastybite.test/api/category')
+    fetch('https://dynastybite-backend-production-7527.up.railway.app/api/category')
     .then((res) => res.json())
     .then((data) => setCategories(data))
     .catch((err) => console.error('Gagal memuat jadwal:', err));
@@ -116,7 +116,7 @@ export default function Home() {
                               }}
                             >
                               <Image
-                                src={`http://dynastybite.test/storage/images/${menu.image}`}
+                                src={`https://dynastybite-backend-production-7527.up.railway.app/storage/images/${menu.image}`}
                                 alt="Menu Image"
                                 width={300}
                                 height={300}

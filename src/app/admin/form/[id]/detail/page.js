@@ -41,14 +41,14 @@ function DetailOrder() {
     const fetchData = async () => {
       try {
         const [userRes, orderRes, itemRes, menuRes, catRes, typeRes, payRes, statusRes] = await Promise.all([
-          fetch("http://dynastybite.test/api/user"),
-          fetch(`http://dynastybite.test/api/order/${params.id}`),
-          fetch("http://dynastybite.test/api/order_item"),
-          fetch("http://dynastybite.test/api/menu"),
-          fetch("http://dynastybite.test/api/category"),
-          fetch("http://dynastybite.test/api/type_order"),
-          fetch("http://dynastybite.test/api/payment_method"),
-          fetch("http://dynastybite.test/api/order_status"),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/user"),
+          fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${params.id}`),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order_item"),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/menu"),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/category"),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/type_order"),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/payment_method"),
+          fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order_status"),
         ]);
 
         const userData = await userRes.json();
@@ -168,7 +168,7 @@ function DetailOrder() {
                     onClick={async () => {
                       if (confirm("Apakah anda yakin ingin membatalkan order ini?")) {
                         try {
-                          const res = await fetch(`http://dynastybite.test/api/order/${order.id}`, { method: "DELETE" });
+                          const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, { method: "DELETE" });
                           const data = await res.json();
                           if (res.ok) {
                             alert(data.message);

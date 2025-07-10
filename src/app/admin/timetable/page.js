@@ -26,7 +26,7 @@ function Manage(){
     const [timetables, setTimetables] = useState([]);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/timetable")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/timetable")
         .then((res) => res.json())
         .then((data) => setTimetables(data))
         .catch((err) => console.error("Gagal memuat jadwal:", err))

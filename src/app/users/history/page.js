@@ -40,7 +40,7 @@ export default function History(){
     })
 
     useEffect(() => {
-        fetch(`http://dynastybite.test/api/order`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order`)
         .then((res) => res.json())
         .then((data) => setOrders(data))
         .catch((err) => {
@@ -48,7 +48,7 @@ export default function History(){
             alert(err);
         });
 
-        fetch(`http://dynastybite.test/api/order_status`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order_status`)
         .then((res) => res.json())
         .then((data) => setOrderStatus(data))
         .catch((err) => {
@@ -100,7 +100,7 @@ export default function History(){
                                                     if(confirmation){
                                                     e.preventDefault();
                                                     try {
-                                                    const res = await fetch(`http://dynastybite.test/api/order/${order.id}`, {
+                                                    const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
                                                         method: "DELETE",
                                                     });
                                                     const data = await res.json();

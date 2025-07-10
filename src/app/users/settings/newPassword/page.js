@@ -36,7 +36,7 @@ export default function NewPassword() {
         }
 
         try {
-            const response = await fetch(`http://dynastybite.test/api/user/${userId}/change-password`, {
+            const response = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/user/${userId}/change-password`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

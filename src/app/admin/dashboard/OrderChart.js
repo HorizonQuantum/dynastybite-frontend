@@ -17,7 +17,7 @@ export default function ProductChart() {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    fetch("http://dynastybite.test/api/produk-terjual-per-hari")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/produk-terjual-per-hari")
       .then(res => res.json())
       .then(data => setChartData(data));
   }, []);

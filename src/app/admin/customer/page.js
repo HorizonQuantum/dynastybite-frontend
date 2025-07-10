@@ -25,7 +25,7 @@ function Customer() {
 
   // ✅ Fetch semua user dari API
   useEffect(() => {
-    fetch("http://dynastybite.test/api/user")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/user")
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((err) => console.error("Gagal memuat data user:", err));

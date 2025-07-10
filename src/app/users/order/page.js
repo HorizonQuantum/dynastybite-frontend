@@ -49,7 +49,7 @@ export default function Order(){
             setTimeLeft(0);
             setIsExpired(true);
 
-            fetch(`http://dynastybite.test/api/order/${order.id}`, {
+            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
                 method: "DELETE",
                 headers: {
                 Accept: "application/json",
@@ -103,7 +103,7 @@ export default function Order(){
           setTimeLeft(0);
           setIsExpired(true);
 
-          fetch(`http://dynastybite.test/api/order/${popupData.id}`, {
+          fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${popupData.id}`, {
             method: "DELETE",
             headers: {
               Accept: "application/json",
@@ -153,7 +153,7 @@ export default function Order(){
     }, [user])
 
     useEffect(() => {
-        fetch(`http://dynastybite.test/api/order`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order`)
         .then((res)=>res.json())
         .then((data)=>setOrders(data))
         .catch((err)=> {
@@ -161,7 +161,7 @@ export default function Order(){
             alert(err);
         })
 
-        fetch(`http://dynastybite.test/api/order_item`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order_item`)
         .then((res)=>res.json())
         .then((data)=>setOrderItems(data))
         .catch((err)=> {
@@ -169,7 +169,7 @@ export default function Order(){
             alert(err);
         })
 
-        fetch(`http://dynastybite.test/api/menu`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/menu`)
         .then((res)=>res.json())
         .then((data)=>setMenus(data))
         .catch((err)=> {
@@ -177,7 +177,7 @@ export default function Order(){
             alert(err);
         })
 
-        fetch(`http://dynastybite.test/api/category`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/category`)
         .then((res)=>res.json())
         .then((data)=>setCategories(data))
         .catch((err)=> {
@@ -185,7 +185,7 @@ export default function Order(){
             alert(err);
         })
 
-        fetch(`http://dynastybite.test/api/type_order`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/type_order`)
         .then((res)=>res.json())
         .then((data)=>setTypeOrders(data))
         .catch((err)=> {
@@ -193,7 +193,7 @@ export default function Order(){
             alert(err);
         })
 
-        fetch(`http://dynastybite.test/api/payment_method`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/payment_method`)
         .then((res)=>res.json())
         .then((data)=>setPaymentMethods(data))
         .catch((err)=> {
@@ -201,7 +201,7 @@ export default function Order(){
             alert(err);
         })
 
-        fetch(`http://dynastybite.test/api/order_status`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order_status`)
         .then((res)=>res.json())
         .then((data)=>setOrderStatus(data))
         .catch((err)=> {
@@ -329,7 +329,7 @@ export default function Order(){
                                         if(confirmation){
                                         e.preventDefault();
                                         try {
-                                        const res = await fetch(`http://dynastybite.test/api/order/${order.id}`, {
+                                        const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
                                             method: "DELETE",
                                         });
                                         const data = await res.json();

@@ -36,7 +36,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `http://dynastybite.test/api/report/monthly?bulan=${bulan}&tahun=${tahun}`
+        `https://dynastybite-backend-production-7527.up.railway.app/api/report/monthly?bulan=${bulan}&tahun=${tahun}`
       );
       const json = await res.json();
       setData(json.periods);
@@ -46,28 +46,28 @@ function Dashboard() {
   }, [bulan, tahun]);
 
   useEffect(() => {
-    fetch("http://dynastybite.test/api/order")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order")
       .then((res) => res.json())
       .then((data) => setHistorys(data))
       .catch((err) => console.error("Gagal memuat data:", err));
   }, []);
 
   useEffect(() => {
-    fetch("http://dynastybite.test/api/user")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/user")
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((err) => console.error("Gagal memuat data:", err));
   }, []);
 
   useEffect(() => {
-    fetch("http://dynastybite.test/api/type_order")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/type_order")
       .then((res) => res.json())
       .then((data) => setTypes(data))
       .catch((err) => console.error("Gagal memuat data:", err));
   }, []);
 
   useEffect(() => {
-    fetch("http://dynastybite.test/api/order_status")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order_status")
       .then((res) => res.json())
       .then((data) => setStatuses(data))
       .catch((err) => console.error("Gagal memuat data:", err));
@@ -120,7 +120,7 @@ function Dashboard() {
                         <div className="grid grid-cols-[1fr_auto] mb-[12px]">
                             <h1 className="font-bold text-[24px] mb-[12px]">History Pesanan</h1>
                             <a
-                            href="http://dynastybite.test/cetak-laporan"
+                            href="https://dynastybite-backend-production-7527.up.railway.app/cetak-laporan"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-6 py-3 font-bold bg-green-600 text-white rounded-md"

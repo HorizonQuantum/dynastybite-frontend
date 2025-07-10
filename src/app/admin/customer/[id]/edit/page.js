@@ -33,7 +33,7 @@ function EditTimetable(){
     });
 
     useEffect(() => {
-        fetch(`http://dynastybite.test/api/user/${params.id}`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/user/${params.id}`)
         .then((res) => res.json())
         .then((data) => {
             setForm(data)
@@ -49,7 +49,7 @@ function EditTimetable(){
     const submitHendler = async (e) => {
         e.preventDefault();
 
-        await fetch(`http://dynastybite.test/api/user/${params.id}`, {
+        await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/user/${params.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : "application/json",

@@ -33,28 +33,28 @@ function History(){
     const [searchKeyword, setSearchKeyword] = useState("");
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/order")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order")
         .then((res) => res.json())
         .then((data) => setHistorys(data))
         .catch((err) => console.error("Gagal memuat data:", err))
     }, []);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/user")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/user")
         .then((res) => res.json())
         .then((data) => setUsers(data))
         .catch((err) => console.error("Gagal memuat data:", err))
     }, []);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/type_order")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/type_order")
         .then((res) => res.json())
         .then((data) => setTypes(data))
         .catch((err) => console.error("Gagal memuat data:", err))
     }, []);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/order_status")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order_status")
         .then((res) => res.json())
         .then((data) => setStatuses(data))
         .catch((err) => console.error("Gagal memuat data:", err))
@@ -105,7 +105,7 @@ function History(){
                 <div className="grid grid-cols-[1fr_auto] mb-[12px] mx-[42px] pt-[24px]">
                   <h1 className="font-bold text-[24px] mb-[12px]">History Pesanan</h1>
                   <a
-                    href="http://dynastybite.test/api/cetak-laporan"
+                    href="https://dynastybite-backend-production-7527.up.railway.app/api/cetak-laporan"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 font-bold bg-green-600 text-white rounded-md"
@@ -182,7 +182,7 @@ function History(){
                                             if(confirmation){
                                               e.preventDefault();
                                               try {
-                                              const res = await fetch(`http://dynastybite.test/api/order/${history.id}`, {
+                                              const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${history.id}`, {
                                                   method: "DELETE",
                                               });
                                               const data = await res.json();
@@ -279,7 +279,7 @@ function History(){
                                             if(confirmation){
                                               e.preventDefault();
                                               try {
-                                              const res = await fetch(`http://dynastybite.test/api/order/${history.id}`, {
+                                              const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${history.id}`, {
                                                   method: "DELETE",
                                               });
                                               const data = await res.json();
@@ -376,7 +376,7 @@ function History(){
                                             if(confirmation){
                                               e.preventDefault();
                                               try {
-                                              const res = await fetch(`http://dynastybite.test/api/order/${history.id}`, {
+                                              const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${history.id}`, {
                                                   method: "DELETE",
                                               });
                                               const data = await res.json();

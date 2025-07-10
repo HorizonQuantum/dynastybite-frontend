@@ -23,7 +23,7 @@ export default function Auth() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://dynastybite.test/api/send-otp", {
+      const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/send-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function Auth() {
     e.preventDefault();
 
     try {
-        const res = await fetch("http://dynastybite.test/api/register", {
+        const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

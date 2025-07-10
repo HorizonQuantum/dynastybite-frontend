@@ -46,28 +46,28 @@ function FormOrder(){
 
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/order")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order")
         .then((res) => res.json())
         .then((data) => setHistorys(data))
         .catch((err) => console.error("Gagal memuat data:", err))
     }, []);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/user")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/user")
         .then((res) => res.json())
         .then((data) => setUsers(data))
         .catch((err) => console.error("Gagal memuat data:", err))
     }, []);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/type_order")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/type_order")
         .then((res) => res.json())
         .then((data) => setTypes(data))
         .catch((err) => console.error("Gagal memuat data:", err))
     }, []);
 
     useEffect(() => {
-        fetch("http://dynastybite.test/api/order_status")
+        fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order_status")
         .then((res) => res.json())
         .then((data) => setStatuses(data))
         .catch((err) => console.error("Gagal memuat data:", err))
@@ -145,7 +145,7 @@ function FormOrder(){
                             try {
                               const results = await Promise.all(
                                 selectedOrderIds.map((id) =>
-                                  fetch(`http://dynastybite.test/api/order/${id}/status`, {
+                                  fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${id}/status`, {
                                     method: "PATCH",
                                     headers: {
                                       "Content-Type": "application/json",
@@ -158,7 +158,7 @@ function FormOrder(){
 
                               alert("Status berhasil diubah.");
                               // Refresh data
-                              const updated = await fetch("http://dynastybite.test/api/order");
+                              const updated = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/order");
                               const updatedData = await updated.json();
                               setHistorys(updatedData);
                               setSelectedOrderIds([]); // reset
@@ -270,7 +270,7 @@ function FormOrder(){
                                             if(confirmation){
                                               e.preventDefault();
                                               try {
-                                              const res = await fetch(`http://dynastybite.test/api/order/${history.id}`, {
+                                              const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${history.id}`, {
                                                   method: "DELETE",
                                               });
                                               const data = await res.json();
@@ -395,7 +395,7 @@ function FormOrder(){
                                             if(confirmation){
                                               e.preventDefault();
                                               try {
-                                              const res = await fetch(`http://dynastybite.test/api/order/${history.id}`, {
+                                              const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${history.id}`, {
                                                   method: "DELETE",
                                               });
                                               const data = await res.json();

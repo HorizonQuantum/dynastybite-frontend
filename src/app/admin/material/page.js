@@ -37,18 +37,18 @@ function Material() {
   const [button, setButton] = useState(false);
 
   useEffect(() => {
-    fetch("http://dynastybite.test/api/menu")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/menu")
       .then((res) => res.json())
       .then((data) => setMenus(data));
 
-    fetch("http://dynastybite.test/api/category")
+    fetch("https://dynastybite-backend-production-7527.up.railway.app/api/category")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
 
   const handleAddCategory = async () => {
     try {
-      const res = await fetch("http://dynastybite.test/api/category", {
+      const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/category", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ function Material() {
       setNewCategory("");
 
       // Refetch kategori
-      const categoryRes = await fetch("http://dynastybite.test/api/category");
+      const categoryRes = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/category");
       const categoriesData = await categoryRes.json();
       setCategories(categoriesData);
     } catch (err) {
@@ -97,7 +97,7 @@ function Material() {
     formData.append("image", newMenu.image);
 
     try {
-      const res = await fetch("http://dynastybite.test/api/menu", {
+      const res = await fetch("https://dynastybite-backend-production-7527.up.railway.app/api/menu", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -139,7 +139,7 @@ function Material() {
     if(!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://dynastybite.test/api/category/${id}`, {
+      const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/category/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json"
@@ -165,7 +165,7 @@ function Material() {
     if(!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://dynastybite.test/api/menu/${id}`, {
+      const res = await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/menu/${id}`, {
         method: "DELETE",
         headers: {
           Accept : "application/json"
@@ -238,7 +238,7 @@ function Material() {
                               }}
                             >
                               <Image
-                                src={`http://dynastybite.test/storage/images/${menu.image}`}
+                                src={`https://dynastybite-backend-production-7527.up.railway.app/storage/images/${menu.image}`}
                                 alt="Menu Image"
                                 width={300}
                                 height={300}

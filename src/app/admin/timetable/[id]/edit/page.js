@@ -31,7 +31,7 @@ function EditTimetable(){
     });
 
     useEffect(() => {
-        fetch(`http://dynastybite.test/api/timetable/${params.id}`)
+        fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/timetable/${params.id}`)
         .then((res) => res.json())
         .then((data) => {
             setForm(data)
@@ -47,7 +47,7 @@ function EditTimetable(){
     const submitHendler = async (e) => {
         e.preventDefault();
 
-        await fetch(`http://dynastybite.test/api/timetable/${params.id}`, {
+        await fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/timetable/${params.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : "application/json",
