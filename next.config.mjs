@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-    domains: ['dynastybite.test'],
+        remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'dynastybite-backend-production-7527.up.railway.app',
+        pathname: '/images/**',
+      },
+    ],
   },
   eslint: {
     ignoreDuringBuilds: true,
