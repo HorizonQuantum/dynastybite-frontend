@@ -238,7 +238,7 @@ function Material() {
                               }}
                             >
                               <Image
-                                src={`https://dynastybite-backend-production-7527.up.railway.app/storage/${menu.image}`}
+                                src={`/menu-images/${menu.image}`}
                                 alt="Menu Image"
                                 width={300}
                                 height={300}
