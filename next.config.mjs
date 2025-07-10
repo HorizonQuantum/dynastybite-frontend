@@ -5,7 +5,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'dynastybite-backend-production-7527.up.railway.app',
-        pathname: '/images/**',
+        pathname: '/storage/images/**',
       },
     ],
   },
