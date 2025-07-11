@@ -29,57 +29,57 @@ export default function Order(){
     const [timeLeft, setTimeLeft] = useState(0);
     const [isExpired, setIsExpired] = useState(false);
 
-    useEffect(() => {
-        if (!orders) return;
+    // useEffect(() => {
+    //     if (!orders) return;
 
-        const updateCountdowns = () => {
-            const now = new Date().getTime();
-            const newCountdowns = {};
+    //     const updateCountdowns = () => {
+    //         const now = new Date().getTime();
+    //         const newCountdowns = {};
 
-            orders.forEach(order => {
-            const expire = new Date(order.expired_at).getTime();
-            const distance = Math.floor((expire - now) / 1000); 
-            newCountdowns[order.id] = distance > 0 ? distance : 0;
+    //         orders.forEach(order => {
+    //         const expire = new Date(order.expired_at).getTime();
+    //         const distance = Math.floor((expire - now) / 1000); 
+    //         newCountdowns[order.id] = distance > 0 ? distance : 0;
             
-            setOrderCountdowns(newCountdowns);
+    //         setOrderCountdowns(newCountdowns);
 
-        //     if (distance <= 0) {
-        //     console.log("Countdown selesai, waktu habis");
-        //     clearInterval(updateCountdowns);
-        //     setTimeLeft(0);
-        //     setIsExpired(true);
+    //         if (distance <= 0) {
+    //         console.log("Countdown selesai, waktu habis");
+    //         clearInterval(updateCountdowns);
+    //         setTimeLeft(0);
+    //         setIsExpired(true);
 
-        //     fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
-        //         method: "DELETE",
-        //         headers: {
-        //         Accept: "application/json",
-        //         },
-        //     })
-        //         .then((res) => {
-        //         if (res.ok) {
-        //             alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
-        //             setPopupData(null);
-        //             setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
-        //             setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
-        //         } else {
-        //             console.warn("Pesanan tidak berhasil dihapus otomatis");
-        //         }
-        //         })
-        //         .catch((err) => {
-        //         console.error("Gagal menghapus pesanan otomatis:", err);
-        //         });
-        //     } else {
-        //     setTimeLeft(distance);
-        //     setIsExpired(false);
-        //     }
-        // }, 1000);
-        // };
+    //         fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
+    //             method: "DELETE",
+    //             headers: {
+    //             Accept: "application/json",
+    //             },
+    //         })
+    //             .then((res) => {
+    //             if (res.ok) {
+    //                 alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
+    //                 setPopupData(null);
+    //                 setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
+    //                 setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
+    //             } else {
+    //                 console.warn("Pesanan tidak berhasil dihapus otomatis");
+    //             }
+    //             })
+    //             .catch((err) => {
+    //             console.error("Gagal menghapus pesanan otomatis:", err);
+    //             });
+    //         } else {
+    //         setTimeLeft(distance);
+    //         setIsExpired(false);
+    //         }
+    //     }, 1000);
+    //     };
 
-        // updateCountdowns(); 
-        // const interval = setInterval(updateCountdowns, 1000); 
+    //     updateCountdowns(); 
+    //     const interval = setInterval(updateCountdowns, 1000); 
 
-        // return () => clearInterval(interval);
-    }, [orders]);
+    //     return () => clearInterval(interval);
+    // }, [orders]);
 
 
     useEffect(() => {
