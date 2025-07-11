@@ -37,6 +37,13 @@ export default function Order(){
     const [timeLeft, setTimeLeft] = useState(0);
     const [isExpired, setIsExpired] = useState(false);
     
+useEffect(() => {
+  if (!orders || orders.length === 0) return;
+
+  orders.forEach(order => {
+    console.log("Original expired_at string:", order.expired_at);
+  });
+}, [orders]);
 
     useEffect(() => {
   if (!orders || orders.length === 0) return;
