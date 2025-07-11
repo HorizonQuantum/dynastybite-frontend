@@ -43,42 +43,42 @@ export default function Order(){
             
             setOrderCountdowns(newCountdowns);
 
-            if (distance <= 0) {
-            console.log("Countdown selesai, waktu habis");
-            clearInterval(updateCountdowns);
-            setTimeLeft(0);
-            setIsExpired(true);
+        //     if (distance <= 0) {
+        //     console.log("Countdown selesai, waktu habis");
+        //     clearInterval(updateCountdowns);
+        //     setTimeLeft(0);
+        //     setIsExpired(true);
 
-            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
-                method: "DELETE",
-                headers: {
-                Accept: "application/json",
-                },
-            })
-                .then((res) => {
-                if (res.ok) {
-                    alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
-                    setPopupData(null);
-                    setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
-                    setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
-                } else {
-                    console.warn("Pesanan tidak berhasil dihapus otomatis");
-                }
-                })
-                .catch((err) => {
-                console.error("Gagal menghapus pesanan otomatis:", err);
-                });
-            } else {
-            setTimeLeft(distance);
-            setIsExpired(false);
-            }
-        }, 1000);
-        };
+        //     fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
+        //         method: "DELETE",
+        //         headers: {
+        //         Accept: "application/json",
+        //         },
+        //     })
+        //         .then((res) => {
+        //         if (res.ok) {
+        //             alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
+        //             setPopupData(null);
+        //             setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
+        //             setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
+        //         } else {
+        //             console.warn("Pesanan tidak berhasil dihapus otomatis");
+        //         }
+        //         })
+        //         .catch((err) => {
+        //         console.error("Gagal menghapus pesanan otomatis:", err);
+        //         });
+        //     } else {
+        //     setTimeLeft(distance);
+        //     setIsExpired(false);
+        //     }
+        // }, 1000);
+        // };
 
-        updateCountdowns(); 
-        const interval = setInterval(updateCountdowns, 1000); 
+        // updateCountdowns(); 
+        // const interval = setInterval(updateCountdowns, 1000); 
 
-        return () => clearInterval(interval);
+        // return () => clearInterval(interval);
     }, [orders]);
 
 
