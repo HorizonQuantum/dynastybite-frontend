@@ -44,26 +44,6 @@ useEffect(() => {
     console.log("Original expired_at string:", order.expired_at);
   });
 }, [orders]);
-
-    useEffect(() => {
-  if (!orders || orders.length === 0) return;
-
-  const now = new Date();
-  console.log("Waktu lokal browser:", now.toString());
-  console.log("Waktu UTC browser:", now.toISOString());
-  
-  orders.forEach(order => {
-    const now = dayjs().tz("Asia/Jakarta");
-    const expire = dayjs.tz(order.expired_at, "Asia/Jakarta");
-    const distance = expire.diff(now, "second");
-
-    console.log("NOW      :", now.format());
-    console.log("EXPIRED  :", expire.format());
-    console.log("DISTANCE :", distance);
-
-
-  });
-}, [orders]);
  
     useEffect(() => {
     if (!orders || orders.length === 0) return;
