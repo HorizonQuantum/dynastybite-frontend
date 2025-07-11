@@ -33,7 +33,7 @@ export default function Order(){
         if (!orders || orders.length === 0) return;
 
         const updateCountdowns = () => {
-            const now = Date.now(); // konsisten waktu sekarang
+            const now = Date.now(); 
             const newCountdowns = {};
 
             orders.forEach((order) => {

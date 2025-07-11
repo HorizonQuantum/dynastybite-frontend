@@ -28,6 +28,8 @@ export default function Dashboard(){
     }, []);
     
     const login = true;
+    const waktu = new Date.now().getTime();
+    console.log(waktu);
 
     const [sisaKuota, setSisaKuota] = useState(150);
     const [productType, setProductType] = useState("");
