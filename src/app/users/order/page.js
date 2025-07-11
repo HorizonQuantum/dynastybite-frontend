@@ -30,29 +30,21 @@ export default function Order(){
     const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
-        console.log("Waktu lokal browser:", new Date().toString());
-        console.log("Waktu UTC browser:", new Date().toISOString());
-        console.log("Waktu:", new Date());
-        console.log("waktu order:", orders.expired_at);
-    }, []);
-
-    useEffect(() => {
         if (!orders || orders.length === 0) return;
 
         const updateCountdowns = () => {
             const now = Date.now();
-            console.log(now);
             const newCountdowns = {};
 
             orders.forEach((order) => {
-                const expire = Date.parse(order.expired_at); // pastikan parsing dengan zona waktu
-                const distance = Math.floor((expire - now) / 1000); // hitung selisih dalam detik
+                const expire = Date.parse(order.expired_at); // waktu dari backend (ISO 8601 +07:00)
+                const distance = Math.floor((expire - now) / 1000); // dalam detik
                 newCountdowns[order.id] = distance > 0 ? distance : 0;
             });
 
             setOrderCountdowns(newCountdowns);
 
-            // Jalankan auto delete untuk order yang sudah expired
+            // Hapus pesanan yang sudah expired
             orders.forEach((order) => {
                 const distance = newCountdowns[order.id];
 
@@ -84,11 +76,16 @@ export default function Order(){
             });
         };
 
+        // Jalankan pertama kali
         updateCountdowns();
+
+        // Lalu jalankan setiap detik
         const interval = setInterval(updateCountdowns, 1000);
 
+        // Cleanup
         return () => clearInterval(interval);
     }, [orders]);
+
 
 
 
