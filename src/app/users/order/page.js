@@ -30,56 +30,58 @@ export default function Order(){
     const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
-        if (!orders) return;
+        if (!orders || orders.length === 0) return;
 
         const updateCountdowns = () => {
-            const now = new Date().getTime();
+            const now = Date.now(); // konsisten waktu sekarang
             const newCountdowns = {};
 
-            orders.forEach(order => {
-            const expire = new Date(order.expired_at).getTime();
-            const distance = Math.floor((expire - now) / 1000); 
-            newCountdowns[order.id] = distance > 0 ? distance : 0;
-            
+            orders.forEach((order) => {
+                const expire = Date.parse(order.expired_at); // pastikan parsing dengan zona waktu
+                const distance = Math.floor((expire - now) / 1000); // hitung selisih dalam detik
+                newCountdowns[order.id] = distance > 0 ? distance : 0;
+            });
+
             setOrderCountdowns(newCountdowns);
 
-            if (distance <= 0) {
-            console.log("Countdown selesai, waktu habis");
-            clearInterval(updateCountdowns);
-            setTimeLeft(0);
-            setIsExpired(true);
+            // Jalankan auto delete untuk order yang sudah expired
+            orders.forEach((order) => {
+                const distance = newCountdowns[order.id];
 
-            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
-                method: "DELETE",
-                headers: {
-                Accept: "application/json",
-                },
-            })
-                .then((res) => {
-                if (res.ok) {
-                    alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
-                    setPopupData(null);
-                    setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
-                    setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
-                } else {
-                    console.warn("Pesanan tidak berhasil dihapus otomatis");
+                if (distance <= 0) {
+                    console.log("Countdown selesai, hapus order id:", order.id);
+                    setTimeLeft(0);
+                    setIsExpired(true);
+
+                    fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
+                        method: "DELETE",
+                        headers: {
+                            Accept: "application/json",
+                        },
+                    })
+                        .then((res) => {
+                            if (res.ok) {
+                                alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
+                                setPopupData(null);
+                                setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
+                                setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
+                            } else {
+                                console.warn("Pesanan tidak berhasil dihapus otomatis");
+                            }
+                        })
+                        .catch((err) => {
+                            console.error("Gagal menghapus pesanan otomatis:", err);
+                        });
                 }
-                })
-                .catch((err) => {
-                console.error("Gagal menghapus pesanan otomatis:", err);
-                });
-            } else {
-            setTimeLeft(distance);
-            setIsExpired(false);
-            }
-        }, 1000);
+            });
         };
 
-        updateCountdowns(); 
-        const interval = setInterval(updateCountdowns, 1000); 
+        updateCountdowns();
+        const interval = setInterval(updateCountdowns, 1000);
 
         return () => clearInterval(interval);
     }, [orders]);
+
 
 
     useEffect(() => {
