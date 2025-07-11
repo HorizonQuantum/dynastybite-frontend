@@ -32,6 +32,7 @@ export default function Order(){
     useEffect(() => {
         console.log("Waktu lokal browser:", new Date().toString());
         console.log("Waktu UTC browser:", new Date().toISOString());
+        console.log("Waktu:", new Date.mow());
     }, []);
 
     useEffect(() => {
@@ -39,6 +40,7 @@ export default function Order(){
 
         const updateCountdowns = () => {
             const now = Date.now();
+            console.log(now);
             const newCountdowns = {};
 
             orders.forEach((order) => {
