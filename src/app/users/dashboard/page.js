@@ -331,6 +331,7 @@ export default function Dashboard(){
     if (!user) return <div>Memuat...</div>
     return(
       <div>
+        {console.log(waktu)}
             <Nav login={login}/>
             <div className="grid grid-cols-[auto_1280px_auto] bg-[#F8F0DF] py-[24px]">
                 <div></div>
