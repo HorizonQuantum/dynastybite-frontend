@@ -33,6 +33,7 @@ export default function Order(){
         console.log("Waktu lokal browser:", new Date().toString());
         console.log("Waktu UTC browser:", new Date().toISOString());
         console.log("Waktu:", new Date.mow());
+        console.log("waktu order:", orders.expired_at);
     }, []);
 
     useEffect(() => {
