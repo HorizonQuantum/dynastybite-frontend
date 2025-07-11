@@ -30,10 +30,15 @@ export default function Order(){
     const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
+        console.log("Waktu lokal browser:", new Date().toString());
+        console.log("Waktu UTC browser:", new Date().toISOString());
+    }, []);
+
+    useEffect(() => {
         if (!orders || orders.length === 0) return;
 
         const updateCountdowns = () => {
-            const now = Date.now(); 
+            const now = Date.now();
             const newCountdowns = {};
 
             orders.forEach((order) => {

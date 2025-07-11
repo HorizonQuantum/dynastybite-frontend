@@ -28,8 +28,6 @@ export default function Dashboard(){
     }, []);
     
     const login = true;
-    const waktu = new Date.now().getTime();
-    console.log(waktu);
 
     const [sisaKuota, setSisaKuota] = useState(150);
     const [productType, setProductType] = useState("");
@@ -331,7 +329,6 @@ export default function Dashboard(){
     if (!user) return <div>Memuat...</div>
     return(
       <div>
-        {console.log(waktu)}
             <Nav login={login}/>
             <div className="grid grid-cols-[auto_1280px_auto] bg-[#F8F0DF] py-[24px]">
                 <div></div>
