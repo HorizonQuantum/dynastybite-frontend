@@ -46,8 +46,13 @@ export default function Order(){
   console.log("Waktu UTC browser:", now.toISOString());
   
   orders.forEach(order => {
-    console.log("Order expired_at (asli):", order.expired_at);
-    console.log("Order expired_at (parsed):", new Date(order.expired_at).toString());
+    const now = dayjs().tz("Asia/Jakarta");
+    const expire = dayjs(order.expired_at);
+    const distance = expire.diff(now, "second");
+    console.log(now);
+    console.log(expire);
+    console.log(distance);
+
   });
 }, [orders]);
  
