@@ -47,11 +47,13 @@ export default function Order(){
   
   orders.forEach(order => {
     const now = dayjs().tz("Asia/Jakarta");
-    const expire = dayjs(order.expired_at);
+    const expire = dayjs.tz(order.expired_at, "Asia/Jakarta");
     const distance = expire.diff(now, "second");
-    console.log(now);
-    console.log(expire);
-    console.log(distance);
+
+    console.log("NOW      :", now.format());
+    console.log("EXPIRED  :", expire.format());
+    console.log("DISTANCE :", distance);
+
 
   });
 }, [orders]);
