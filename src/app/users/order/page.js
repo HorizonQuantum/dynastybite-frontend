@@ -29,38 +29,45 @@ export default function Order(){
     const [timeLeft, setTimeLeft] = useState(0);
     const [isExpired, setIsExpired] = useState(false);
 
-    useEffect(() => {
-        if (!orders) return;
+useEffect(() => {
+    if (!orders || orders.length === 0) return;
 
-        const updateCountdowns = () => {
-            const now = new Date().getTime();
-            const newCountdowns = {};
+    const updateCountdowns = () => {
+        const now = new Date().getTime();
+        const newCountdowns = {};
 
-            orders.forEach(order => {
+        orders.forEach(order => {
             const expire = new Date(order.expired_at).getTime();
-            const distance = Math.floor((expire - now) / 1000); 
+            const distance = Math.floor((expire - now) / 1000);
             newCountdowns[order.id] = distance > 0 ? distance : 0;
             
-            setOrderCountdowns(newCountdowns);
-
+            // Handle expired orders
             if (distance <= 0) {
-            console.log("Countdown selesai, waktu habis");
-            clearInterval(updateCountdowns);
-            setTimeLeft(0);
-            setIsExpired(true);
-
-            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
-                method: "DELETE",
-                headers: {
-                Accept: "application/json",
-                },
-            })
+                fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
+                    method: "DELETE",
+                    headers: { Accept: "application/json" },
+                })
                 .then((res) => {
-                if (res.ok) {
-                    alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
-                    setPopupData(null);
-                    setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
-                    setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
+                    if (res.ok) {
+                        console.log("Pesanan kadaluarsa dihapus:", order.id);
+                        setOrders(prev => prev.filter(o => o.id !== order.id));
+                    }
+                })
+                .catch(err => console.error("Gagal menghapus pesanan:", err));
+            }
+        });
+
+        setOrderCountdowns(newCountdowns);
+    };
+
+    // Jalankan segera pertama kali
+    updateCountdowns();
+    
+    // Set interval untuk update setiap detik
+    const interval = setInterval(updateCountdowns, 1000);
+
+    return () => clearInterval(interval);
+}, [orders]);
                 } else {
                     console.warn("Pesanan tidak berhasil dihapus otomatis");
                 }
