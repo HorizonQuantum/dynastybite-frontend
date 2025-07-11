@@ -1,5 +1,10 @@
 "use client"
 
+// di file .jsx
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
 import Nav from "@/app/components/nav/page";
 import Image from "next/image";
 import Location from "../../../../public/images/location.png";
@@ -9,6 +14,9 @@ import Whatsapp from "../../../../public/images/whatsapp.png";
 import Gmail from "../../../../public/images/gmail.png";
 import Address from "../../../../public/images/address.png";
 import { useState, useEffect } from "react";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export default function Order(){
     const [user, setUser] = useState(null);
@@ -28,6 +36,7 @@ export default function Order(){
     const [showPopup, setShowPopup] = useState(false);
     const [timeLeft, setTimeLeft] = useState(0);
     const [isExpired, setIsExpired] = useState(false);
+    
 
     useEffect(() => {
   if (!orders || orders.length === 0) return;
@@ -35,7 +44,7 @@ export default function Order(){
   const now = new Date();
   console.log("Waktu lokal browser:", now.toString());
   console.log("Waktu UTC browser:", now.toISOString());
-
+  
   orders.forEach(order => {
     console.log("Order expired_at (asli):", order.expired_at);
     console.log("Order expired_at (parsed):", new Date(order.expired_at).toString());
@@ -43,64 +52,55 @@ export default function Order(){
 }, [orders]);
  
     useEffect(() => {
-        if (!orders || orders.length === 0) return;
+    if (!orders || orders.length === 0) return;
 
-        const updateCountdowns = () => {
-            const now = Date.now();
-            const newCountdowns = {};
+    const updateCountdowns = () => {
+        const now = dayjs().tz("Asia/Jakarta"); // pastikan waktu lokal sesuai server
+        const newCountdowns = {};
 
-            orders.forEach((order) => {
-                const expire = Date.parse(order.expired_at); // waktu dari backend (ISO 8601 +07:00)
-                const distance = Math.floor((expire - now) / 1000); // dalam detik
-                newCountdowns[order.id] = distance > 0 ? distance : 0;
-            });
+        orders.forEach((order) => {
+        const expire = dayjs(order.expired_at); // ini sudah dalam +07:00
+        const distance = expire.diff(now, "second");
 
-            setOrderCountdowns(newCountdowns);
+        newCountdowns[order.id] = distance > 0 ? distance : 0;
+        });
 
-            // Hapus pesanan yang sudah expired
-            orders.forEach((order) => {
-                const distance = newCountdowns[order.id];
+        setOrderCountdowns(newCountdowns);
 
-                if (distance <= 0) {
-                    console.log("Countdown selesai, hapus order id:", order.id);
-                    setTimeLeft(0);
-                    setIsExpired(true);
+        orders.forEach((order) => {
+        const distance = newCountdowns[order.id];
+        if (distance <= 0) {
+            console.log("Countdown selesai, hapus order id:", order.id);
+            setTimeLeft(0);
+            setIsExpired(true);
 
-                    fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
-                        method: "DELETE",
-                        headers: {
-                            Accept: "application/json",
-                        },
-                    })
-                        .then((res) => {
-                            if (res.ok) {
-                                alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
-                                setPopupData(null);
-                                setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
-                                setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
-                            } else {
-                                console.warn("Pesanan tidak berhasil dihapus otomatis");
-                            }
-                        })
-                        .catch((err) => {
-                            console.error("Gagal menghapus pesanan otomatis:", err);
-                        });
+            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+            },
+            })
+            .then((res) => {
+                if (res.ok) {
+                alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
+                setPopupData(null);
+                setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
+                setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
+                } else {
+                console.warn("Pesanan tidak berhasil dihapus otomatis");
                 }
+            })
+            .catch((err) => {
+                console.error("Gagal menghapus pesanan otomatis:", err);
             });
-        };
+        }
+        });
+    };
 
-        // Jalankan pertama kali
-        updateCountdowns();
-
-        // Lalu jalankan setiap detik
-        const interval = setInterval(updateCountdowns, 1000);
-
-        // Cleanup
-        return () => clearInterval(interval);
+    updateCountdowns();
+    const interval = setInterval(updateCountdowns, 1000);
+    return () => clearInterval(interval);
     }, [orders]);
-
-
-
 
     useEffect(() => {
       if (!popupData) {
