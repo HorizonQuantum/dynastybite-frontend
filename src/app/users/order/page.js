@@ -49,7 +49,7 @@ export default function Order(){
             setTimeLeft(0);
             setIsExpired(true);
 
-            fetch(`http://dynastybite.test/api/order/${order.id}`, {
+            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
                 method: "DELETE",
                 headers: {
                 Accept: "application/json",
@@ -103,7 +103,7 @@ export default function Order(){
           setTimeLeft(0);
           setIsExpired(true);
 
-          fetch(`http://dynastybite.test/api/order/${popupData.id}`, {
+          fetch(`https://dynastybite-backend-production-7527.up.railway.app/order/${popupData.id}`, {
             method: "DELETE",
             headers: {
               Accept: "application/json",
