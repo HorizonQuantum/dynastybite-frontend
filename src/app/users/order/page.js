@@ -42,6 +42,9 @@ useEffect(() => {
 
   orders.forEach(order => {
     console.log("Original expired_at string:", order.expired_at);
+    console.log("NOW      :", dayjs().tz("Asia/Jakarta").format());
+    console.log("EXPIRED  :", dayjs.utc(order.expired_at).tz("Asia/Jakarta").format());
+    console.log("DISTANCE :", dayjs.utc(order.expired_at).tz("Asia/Jakarta").diff(dayjs().tz("Asia/Jakarta"), "second"));
   });
 }, [orders]);
  
@@ -53,7 +56,7 @@ useEffect(() => {
         const newCountdowns = {};
 
         orders.forEach((order) => {
-        const expire = dayjs(order.expired_at); // ini sudah dalam +07:00
+        const expire = dayjs.utc(order.expired_at).tz("Asia/Jakarta");
         const distance = expire.diff(now, "second");
 
         newCountdowns[order.id] = distance > 0 ? distance : 0;
