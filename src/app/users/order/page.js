@@ -42,62 +42,62 @@ useEffect(() => {
 
   orders.forEach(order => {
     console.log("Original expired_at string:", order.expired_at);
-    console.log("NOW      :", dayjs().tz("Asia/Jakarta").format());
-    console.log("EXPIRED  :", dayjs.utc(order.expired_at).tz("Asia/Jakarta").format());
+    console.log("EXPIRED:", dayjs(order.expired_at).tz("Asia/Jakarta").format());
+    console.log("NOW    :", dayjs().tz("Asia/Jakarta").format());
     console.log("DISTANCE :", dayjs.utc(order.expired_at).tz("Asia/Jakarta").diff(dayjs().tz("Asia/Jakarta"), "second"));
   });
 }, [orders]);
  
-    useEffect(() => {
-    if (!orders || orders.length === 0) return;
+    // useEffect(() => {
+    // if (!orders || orders.length === 0) return;
 
-    const updateCountdowns = () => {
-        const now = dayjs().tz("Asia/Jakarta"); // pastikan waktu lokal sesuai server
-        const newCountdowns = {};
+    // const updateCountdowns = () => {
+    //     const now = dayjs().tz("Asia/Jakarta"); // pastikan waktu lokal sesuai server
+    //     const newCountdowns = {};
 
-        orders.forEach((order) => {
-        const expire = dayjs.utc(order.expired_at).tz("Asia/Jakarta");
-        const distance = expire.diff(now, "second");
+    //     orders.forEach((order) => {
+    //     const expire = dayjs.utc(order.expired_at).tz("Asia/Jakarta");
+    //     const distance = expire.diff(now, "second");
 
-        newCountdowns[order.id] = distance > 0 ? distance : 0;
-        });
+    //     newCountdowns[order.id] = distance > 0 ? distance : 0;
+    //     });
 
-        setOrderCountdowns(newCountdowns);
+    //     setOrderCountdowns(newCountdowns);
 
-        orders.forEach((order) => {
-        const distance = newCountdowns[order.id];
-        if (distance <= 0) {
-            console.log("Countdown selesai, hapus order id:", order.id);
-            setTimeLeft(0);
-            setIsExpired(true);
+    //     orders.forEach((order) => {
+    //     const distance = newCountdowns[order.id];
+    //     if (distance <= 0) {
+    //         console.log("Countdown selesai, hapus order id:", order.id);
+    //         setTimeLeft(0);
+    //         setIsExpired(true);
 
-            fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
-            method: "DELETE",
-            headers: {
-                Accept: "application/json",
-            },
-            })
-            .then((res) => {
-                if (res.ok) {
-                alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
-                setPopupData(null);
-                setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
-                setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
-                } else {
-                console.warn("Pesanan tidak berhasil dihapus otomatis");
-                }
-            })
-            .catch((err) => {
-                console.error("Gagal menghapus pesanan otomatis:", err);
-            });
-        }
-        });
-    };
+    //         fetch(`https://dynastybite-backend-production-7527.up.railway.app/api/order/${order.id}`, {
+    //         method: "DELETE",
+    //         headers: {
+    //             Accept: "application/json",
+    //         },
+    //         })
+    //         .then((res) => {
+    //             if (res.ok) {
+    //             alert("Waktu pembayaran telah habis, pesanan dibatalkan.");
+    //             setPopupData(null);
+    //             setOrders((prevOrders) => prevOrders.filter((o) => o.id !== order.id));
+    //             setOrderItems((prevItems) => prevItems.filter((item) => item.order_id !== order.id));
+    //             } else {
+    //             console.warn("Pesanan tidak berhasil dihapus otomatis");
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             console.error("Gagal menghapus pesanan otomatis:", err);
+    //         });
+    //     }
+    //     });
+    // };
 
-    updateCountdowns();
-    const interval = setInterval(updateCountdowns, 1000);
-    return () => clearInterval(interval);
-    }, [orders]);
+    // updateCountdowns();
+    // const interval = setInterval(updateCountdowns, 1000);
+    // return () => clearInterval(interval);
+    // }, [orders]);
 
     useEffect(() => {
       if (!popupData) {
