@@ -45,7 +45,7 @@ export default function Home() {
     <div>
       <Nav login={login}/>
       <div className="grid grid-cols-[auto_1280px_auto]">
-        <div className="bg-[#F8F0DF]"></div>
+        <div id="beranda" className="bg-[#F8F0DF]"></div>
             <div className="bg-[#F8F0DF] grid grid-cols-[auto_1fr] h-[587px] items-center">
               <div className="flex flex-col gap-[24px]">
                 <div className="font-bold text-[48px] flex gap-3">
@@ -69,7 +69,7 @@ export default function Home() {
               <div className="absolute -top-[50px]">
                 <Image src={logo} alt="logo" width={100} height={100}/>
               </div>
-              <div>
+              <div id="tentang_kami">
                 <h1 className="font-bold text-[20px] mb-[24px] mt-[24px]">Tentang Kami</h1>
                 <div className="w-[1000px] text-[12px]">
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae perspiciatis sed fugit suscipit dolores magni assumenda et rem aliquid, sapiente dolor iusto architecto earum numquam repellendus soluta nisi corrupti veritatis rerum fuga asperiores nam minus beatae. Nesciunt at pariatur saepe impedit vitae nulla odio? Reiciendis, commodi deserunt tempore aut repellat quod vitae quam odio sed reprehenderit alias fugit rem at necessitatibus impedit! Quia, iste esse eligendi praesentium porro unde dolor tempore quaerat, dolorum dolores possimus deleniti itaque ?</p>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="flex flex-col gap-6">
             <div className="flex-1">
               <div className="mb-10">
-                <div>
+                <div id="menu">
                   <h2 className="font-bold text-[32px] text-center mb-[32px]">Daftar Menu</h2>
                 </div>
                 {categories.map((cat) => (
@@ -156,7 +156,7 @@ export default function Home() {
       <div className="grid grid-cols-[auto_1280px_auto] bg-[#E9B75A] p-[64px]">
         <div></div>
         <div>
-          <div className="font-bold text-[32px] text-center mb-[32px]">
+          <div className="font-bold text-[32px] text-center mb-[32px]" id="jadwal">
             <h1>Jadwal PO</h1>
           </div>
           <div className="grid grid-cols-3 gap-[12px] text-[28px] font-bold text-white">
@@ -192,7 +192,7 @@ export default function Home() {
       <div className="grid grid-cols-[auto_1280px_auto] bg-[#F8F0DF] py-[64px]">
         <div></div>
         <div>
-          <div className="font-bold text-[32px] text-center mb-[32px]">
+          <div className="font-bold text-[32px] text-center mb-[32px]" id="review">
             <h1>Review</h1>
           </div>
           <div className="flex flex-col gap-[28px]">

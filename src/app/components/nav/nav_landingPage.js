@@ -4,11 +4,11 @@ export default function NavLandingPage(){
     return(
         <div className="flex justify-end items-center">
             <div className="">
-                <Link href="#" className="px-[12px] py-[8px]">Beranda</Link>
-                <Link href="#" className="px-[12px] py-[8px]">Tentang Kami</Link>
-                <Link href="#" className="px-[12px] py-[8px]">Produk</Link>
-                <Link href="#" className="px-[12px] py-[8px]">Jadwal</Link>
-                <Link href="#" className="px-[12px] py-[8px]">Review</Link>
+                <Link href="#beranda" className="px-[12px] py-[8px]">Beranda</Link>
+                <Link href="#tentang_kami" className="px-[12px] py-[8px]">Tentang Kami</Link>
+                <Link href="#menu" className="px-[12px] py-[8px]">Produk</Link>
+                <Link href="#jadwal" className="px-[12px] py-[8px]">Jadwal</Link>
+                <Link href="#review" className="px-[12px] py-[8px]">Review</Link>
             </div>
             <div className="h-[43px] border-2 rounded-lg mx-[12px] my-[8px]">
             </div>
