@@ -60,7 +60,7 @@ export default function Sidebar(){
             </div>
             <div className="p-[32px]">
                 <ul>
-                    <Link href={`#`}>
+                    <Link href={`https://dynastybite.up.railway.app/`}>
                         <li className="flex gap-[12px] items-center p-[10px] rounded-lg mb-[12px]">
                             <Image src={Logout} alt="Logout"/>
                             <p className="font-semibold text-[14px]">Logout</p>

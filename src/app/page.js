@@ -1,11 +1,9 @@
 "use client"
 
-import Button from "./components/button/page";
 import Nav from "./components/nav/page";
 import Image from "next/image";
 import image from "../../public/images/dimsumHeader.png";
 import logo from "../../public/images/logo2.png";
-import Card from "./components/card/page";
 import information from "../../public/images/information.png";
 import React from "react";
 import profile from "../../public/images/profile.png";
@@ -54,7 +52,9 @@ export default function Home() {
                 </div>
                 <div className="w-[380px] text-[12px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ratione assumenda soluta explicabo aut? Repudiandae reprehenderit blanditiis quasi animi autem quos. Suscipit amet dolorum vel.</div>
                 <div className="w-[200px]">
-                  <Button color={"#DB5611"}>Pesan Sekarang</Button>
+                  <a href="./auth/login" className="flex justify-center w-full py-[8px] font-bold text-[18px] rounded-lg text-white" style={{backgroundColor:`${color}`, boxShadow:"10px 10px 30px #FFE8B7, -10px -10px 30px #FFFBF4"}}>
+                      Pesan Sekarang
+                  </a>
                 </div>
               </div>
               <div className="flex justify-end">
