@@ -52,7 +52,7 @@ export default function Home() {
                 </div>
                 <div className="w-[380px] text-[12px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ratione assumenda soluta explicabo aut? Repudiandae reprehenderit blanditiis quasi animi autem quos. Suscipit amet dolorum vel.</div>
                 <div className="w-[200px]">
-                  <Link href="./auth/login" className="flex justify-center w-full py-[8px] font-bold text-[18px] rounded-lg text-white" style={{backgroundColor:`${color}`, boxShadow:"10px 10px 30px #FFE8B7, -10px -10px 30px #FFFBF4"}}>
+                  <Link href="./auth/login" className="flex justify-center w-full py-[8px] font-bold text-[18px] rounded-lg text-white" style={{backgroundColor:`#DB5611`, boxShadow:"10px 10px 30px #FFE8B7, -10px -10px 30px #FFFBF4"}}>
                       Pesan Sekarang
                   </Link>
                 </div>
